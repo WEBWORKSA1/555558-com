@@ -107,7 +107,7 @@ def page(*, path, title, desc, body, root="", current="", schema=None, tools_js=
     }, {"@context": "https://schema.org", "@type": "Organization", "name": NAME, "url": SITE + "/", "logo": SITE + "/assets/img/logo.svg"}]
     if schema:
         ld.extend(schema if isinstance(schema, list) else [schema])
-    ld_html = "\n".join(f'<script type="application/ld+json">{json.dumps(x)}</script>' for x in ld)
+    ld_html = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
     t = html.escape(title)
     d = html.escape(desc)
     return f'''<!doctype html>
